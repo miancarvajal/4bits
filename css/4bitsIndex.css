@@ -1,5 +1,5 @@
 @media(min-width: 800px){
-.boton_personalizado{
+	.boton_personalizado{
 		text-decoration: none;
 		padding: 10%;
 		padding-left: 16%;
@@ -17,7 +17,7 @@
 }
 
 @media(max-width: 800px){
-.boton_personalizado{
+	.boton_personalizado{
 		text-decoration: none;
 		padding: 15%;
 		font-size: 56%;
@@ -35,7 +35,6 @@
 }
 
 @media (max-width: 576px) {
-
   .boton_personalizado{
 		text-decoration: none;
 		padding: 15%;
@@ -51,17 +50,17 @@
 		color: #8b0000;
 		background-color: #000000;
 		}
-  }
+	}
 .boton_publicar{
-		text-decoration: none;
-		padding: 1%;
-		font-size: 80%;
-		color: #ffffff;
-		background-color: #1883ba;
-		border-radius: 6px;
-		border: 2px solid #0016b0;
-		}
-		.boton_publicar:hover{
-		color: #8b0000;
-		background-color: #000000;
-		}
+	text-decoration: none;
+	padding: 1%;
+	font-size: 80%;
+	color: #ffffff;
+	background-color: #1883ba;
+	border-radius: 6px;
+	border: 2px solid #0016b0;
+	}
+	.boton_publicar:hover{
+	color: #8b0000;
+	background-color: #000000;
+}
