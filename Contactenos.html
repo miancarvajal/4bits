@@ -39,24 +39,16 @@
 		<h6><b>De acuerdo con la ley 1581 del 2012; los datos que registrará a continuación, son para uso exclusivo de 4bits; 
 			<br>cuya finalidad, es la de contactar al solicitante para poder atender los servicios solicitados.</b>
 		</h6><br><br>
-		<form action="#" name = "formulario" id="formulario" method="POST" action="datos.php">
+		<form name = "formulario" id="formulario" method="POST" action="mailer4bits.php">
 			<h3><b>DATOS DEL SOLICITANTE</b></h3>	 
 			<h4>
 				<div class= "container-fluid">
 					<div class = "row mb-3">
 						<div class = "col">
-							Nombres:
+							Nombre:
 						</div>
 						<div class = "col">
-							<input type="text" name="usr_nombre" size="15" required onkeypress="return blqnum(event);"/><br>
-						</div>
-					</div>
-					<div class = "row mb-3">
-						<div class = "col">
-							Apellidos:
-						</div>
-						<div class = "col">
-							<input type="text" name="usr_apellido" size="15" required onkeypress="return blqnum(event);"/><br>
+							<input type="text" name="usr_nombre" id="usr_nombre" size="15" required onkeypress="return blqnum(event);"/><br>
 						</div>
 					</div>
 					<div class = "row mb-3">
@@ -64,11 +56,30 @@
 							Tipo de representación:
 						</div>
 						<div class = "col">
-							<select name="usr_representación" required>
+							<select name="usr_representacion" id="usr_representacion" onChange="editar_tipo_usuario(this)">
 								<option value="Particular">Persona natural</option>
 								<option value="Empresa" selected>Persona jurídica</option>
 							 </select><br>
 						</div>
+					</div>
+					<div id="entidades">
+						<div class = "row mb-3">
+							<div class = "col">
+								Nombre de entidad: 
+							</div>
+							<div class = "col">								
+								<input type="text" name="usr_nom_ent" id="usr_nom_ent" size="15" />
+							</div>
+						</div>
+						<div class = "row mb-3">
+							<div class = "col">								
+								Cargo del solicitante: 
+							</div>
+							<div class = "col">								
+								<input type="text" name="usr_cargo" id="usr_cargo" size="15" />
+							</div>
+						</div>
+						
 					</div>
 					<div class = "row mb-3">
 						<div class = "col">
@@ -88,7 +99,7 @@
 							Número de identificación o NIT:
 						</div>
 						<div class = "col">
-							<input type="text" name="usr_num_id" size="15" required onkeypress="return blqlet(event);"/><br>
+							<input type="text" name="usr_num_id" id="usr_num_id" size="15" required onkeypress="return blqlet(event);"/><br>
 						</div>
 					</div>
 					<div class = "row mb-3">
@@ -96,7 +107,7 @@
 							Número de celular:
 						</div>
 						<div class = "col">
-							<input name="usr_num_cel" type="tel" size="15" required onkeypress="return blqlet(event);"/><br>
+							<input name="usr_num_cel" id="usr_num_cel" type="tel" size="15" required onkeypress="return blqlet(event);"/><br>
 						</div>
 					</div>
 					<div class = "row mb-3">
@@ -104,7 +115,7 @@
 							Número de teléfono del contacto: 
 						</div>
 						<div class = "col">
-							<input name="usr_num_tel" type="tel" size="15" onkeypress="return blqlet(event);"/><br>
+							<input name="usr_num_tel" id="usr_num_tel" type="tel" size="15" onkeypress="return blqlet(event);"/><br>
 						</div>
 					</div>
 					<div class = "row mb-4">
@@ -112,7 +123,7 @@
 							Correo Electronico:
 						</div>
 						<div class = "col">
-							<input type="text" name="usr_mail" size="15" requierd/>
+							<input type="text" name="usr_mail" id="usr_mail" size="15" requierd/>
 						</div>						
 					</div>
 					<div class = "row mb-3">
@@ -120,7 +131,7 @@
 							Dirección de servicio:
 						</div>
 						<div class = "col">
-							<input type="text" name="usr_dir_serv" size="15" required/><br>
+							<input type="text" name="usr_dir_serv" id="usr_dir_serv" size="15" required/><br>
 						</div>
 					</div>
 					<!--<div class = "row mb-3">
@@ -166,72 +177,73 @@
 							Ciudad:
 						</div>
 						<div class = "col">
-							<input name="usr_ciudad" type="text" size="15" required onkeypress="return blqnum(event);"/><br>
+							<input name="usr_ciudad" id="usr_ciudad" type="text" size="15" required onkeypress="return blqnum(event);"/><br>
 						</div>
 					</div>
 				</div>					
 							
 					<center>TIPOS DE SERVICIO:</center>
 					<br>
-					Servicios en Computadores<input type="checkbox" name="chkComp" id="chkComp" value="1" onchange="javascript:showComp()" />
+					<label>Servicios en Computadores<input type="checkbox" name="chk_comp" id="chk_comp" value="Servicios en computadores" onchange="javascript:showComp()" /></label>
 					<div id="comp" style="display: none;">
 						<h5>
-							Mantenimiento de equipos<input type="checkbox" name="chkMantenimiento" id="chkMantenimiento"><br>
-							Instalación de hardware<input type="checkbox" name="chkInstalacionHardware" id="chkInstalacionHardware"><br>
-							Instalación de Software<input type="checkbox" name="chkInstalacionSoftware" id="chkInstalacionSoftware"><br>
+							<label>Mantenimiento de equipos<input type="checkbox" name="sc_mantenimiento" id="sc_mantenimiento" value="Mantenimiento de equipos"></label><br>
+							<label>Instalación de hardware<input type="checkbox" name="sc_instalacion_hardware" id="sc_instalacion_hardware" value="Instalación de hardware"></label><br>
+							<label>Instalación de Software<input type="checkbox" name="sc_instalacion_software" id="sc_instalacion_software" value="Instalación de software"></label><br>
 						</h5>
 					</div>
 					<br>
-					Asesorías tecnológicas<input type="checkbox" name="chkAsesoria" id="chkAsesoria" value="1" onChange="javascript:showAsesoria()">
+					<label>Asesorías tecnológicas<input type="checkbox" name="chk_asesoria" id="chk_asesoria" value="Asesorias" onChange="javascript:showAsesoria()"></label>
 					<div id="asesor" style="display: none;">
 						<h5>
-							Sistemas operativos<input type="checkbox" name="sistemasOperativos" id="asSo"><br>
-							RedesSociales<input type="checkbox" name="redesSociales" id="asRedesSociales"><br>
-							Redes<input type="checkbox" name="redes" id="asRedes"><br>
-							Seguridad<input type="checkbox" name="seguridad" id="asSeguridad"><br>
-							Celulares<input type="checkbox" name="celulares" id="asCelular"><br>
+							<label>Sistemas operativos<input type="checkbox" name="at_sistemas_operativos" id="at_sistemas_operativos"></label><br>
+							<label>RedesSociales<input type="checkbox" name="at_redes_sociales" id="at_redes_sociales" value="Redes sociales"></label><br>
+							<label>Redes<input type="checkbox" name="at_redes" id="at_redes" value="Redes"></label><br>
+							<label>Seguridad<input type="checkbox" name="at_seguridad" id="at_seguridad" value="Seguridad informática"></label><br>
+							<label>Celulares<input type="checkbox" name="at_celulares" id="at_celulares" value="Celulares"></label><br>
 						</h5>
 					</div>
 					<br>
-					Redes sociales<input type="checkbox" name="chkRedesSociales" id="chkRedesSociales" value="1" onChange="javascript:showRedesSociales()">
+					<label>Redes sociales<input type="checkbox" name="chk_redes_sociales" id="chk_redes_sociales" value="Redes Sociales" onChange="javascript:showRedesSociales()"></label>
 					<div id="redSocial" style="display: none;">
 						<h5>
-							Creación<input type="checkbox" name="redSocialCreacion" id="redSocCreacion"><br>
-							Soporte<input type="checkbox" name="redSocialSoporte" id="redSocSoporte"><br>
+							<label>Creación<input type="checkbox" name="red_social_creacion" id="red_social_creacion" value="Creación"></label><br>
+							<label>Soporte<input type="checkbox" name="red_social_soporte" id="red_social_soporte" value="Soporte"></label><br>
 						</h5>
 					</div>	
 					<br>
-					Redes<input type="checkbox" name="chkRedes" id="chkRedes" value="1" onChange="javascript:showRedes()">
+					<label>Redes<input type="checkbox" name="chk_redes" id="chk_redes" value="Redes" onChange="javascript:showRedes()"></label>
 					<div id="red" style="display: none;">
 						<h5>
-							Diseño<input type="checkbox" name="redCreacion" id="redSocCreacion"><br>
-							Instalación<input type="checkbox" name="redCreacion" id="redSocCreacion"><br>
-							Ruteo<input type="checkbox" name="redRuteo" id="redSocCreacion"><br>
-							Soporte<input type="checkbox" name="redSoporte" id="redSocSoporte"><br>
+							<label>Diseño<input type="checkbox" name="red_diseno" id="red_diseno" value="Diseño"></label><br>
+							<label>Instalación<input type="checkbox" name="red_instalacion" id="Instalacion"></label><br>
+							<label>Ruteo<input type="checkbox" name="red_ruteo" id="red_ruteo" value="Ruteo"></label><br>
+							<label>Soporte<input type="checkbox" name="red_soporte" id="red_soporte" value="Soporte"></label><br>
 						</h5>
 					</div>
 					<br>
-					Páginas web<input type="checkbox" name="chkPagWeb" id="chkPagWeb" value="1" onChange="javascript:showPagWeb()">
+					<label><input type="checkbox" name="chk_pag_web" id="chk_pag_web" value="Página Web" onChange="javascript:showPagWeb()">Páginas web</label>
 					<div id="pagWeb" style="display: none;">
 						<h5>
-							Diseño<input type="checkbox" name="diseno" id="webDiseno"><br>
-							Soporte<input type="checkbox" name="soporte" id="webSoporte"><br>
-							Documentación<input type="checkbox" name="documentacion" id="webDocumentacion"><br>
+							<label>Diseño<input type="checkbox" name="pag_diseno" id="pag_diseno" value="Diseño"></label><br>
+							<label>Soporte<input type="checkbox" name="pag_soporte" id="pag_soporte" value="Soporte"></label><br>
+							<label>Codificación<input type="checkbox" name="pag_codificacion" id="pag_codificacion" value="Codificación"></label><br>
 						</h5>
 					</div>
 					<br>
-					Seguridad Informárica<input type="checkbox" name="chkCyberSeg" id="chkCyberSeg" value="1" onChange="javascript:showCyberSeg()">
+					<label>Seguridad Informárica<input type="checkbox" name="chk_cyber_seg" id="chk_cyber_seg" value="Seguridad informática" onChange="javascript:showCyberSeg()"></label>
 					<div id="cyberSeg" style="display: none;">
 						<h5>
-							Antivirus<input type="checkbox" name="antivirus" id="ciberAntivirus"><br>
+							<label>Antivirus<input type="checkbox" name="seg_antivirus" id="seg_antivirus" value="Antivirus"></label><br>
+							<label>Firewall<input type="checkbox" name="seg_firewall" id="seg_firewall" value="Firewall"></label><br>
 						</h5>
 					</div>
 					<br>
-					Celulares<input type="checkbox" name="chkCel" id="chkCel" value="1" onChange="javascript:showCel()">
+					<label>Celulares<input type="checkbox" name="chk_cel" id="chk_cel" value="Celulares" onChange="javascript:showCel()"></label>
 					<div id="cel" style="display: none;">
 						<h5>
-							Equipos<input type="checkbox" name="Equipos" id="celEquipos"><br>
-							mantenimiento<input type="checkbox" name="Mantenimiento" id="celMantenimiento"><br>
+							<label>Equipos<input type="checkbox" name="cel_equipos" id="cel_equipos" value="Equipos"></label><br>
+							<label>mantenimiento<input type="checkbox" name="cel_mantenimiento" id="cel_mantenimiento" value="Mantenimiento"></label><br>
 						</h5>
 					</div>
 					<br>	

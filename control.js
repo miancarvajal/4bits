@@ -1,3 +1,24 @@
+function editar_tipo_usuario(on) {
+	
+    
+    if (on.value=="Particular"){
+           divA = document.getElementById("entidades");
+           divA.style.display = "none";
+		  /* document.getElementById("usrNomEnt").removeAttribute("required");
+		   document.getElementById("usrCargo").removeAttribute("required");*/
+      }
+      else{
+           divB = document.getElementById("entidades");
+           divB.style.display = "";
+           /*document.getElementById("usrNomEnt").setAttribute("required", "");
+		   document.getElementById("usrCargo").setAttribute("required", "");*/
+    }       
+ }
+/*
+    Elaborado por: Miguel Angel Carvajal Copyright © 2017  
+ */ 		
+
+
 function mostrarCasillas(activado){
 	if (activado.checked) {
             element.style.display='block';
@@ -7,45 +28,58 @@ function mostrarCasillas(activado){
         }
 	}
 
+
+
+
+	
+function mostrarUsuarioCorporativo(corp){
+	if (corp.value=="Particular") {
+            element.style.display='block';
+        }
+        else {
+            element.style.display='none';
+        }
+	}
+
 function showComp() {
         element = document.getElementById("comp");
-        check = document.getElementById("chkComp");
+        check = document.getElementById("chk_comp");
         mostrarCasillas(check);
     }
     
 function showAsesoria() {
         element = document.getElementById("asesor");
-        check = document.getElementById("chkAsesoria");
+        check = document.getElementById("chk_asesoria");
         mostrarCasillas(check);
     }
 
 function showRedesSociales() {
         element = document.getElementById("redSocial");
-        check = document.getElementById("chkRedesSociales");
+        check = document.getElementById("chk_redes_sociales");
         mostrarCasillas(check);
     }
     
 function showRedes() {
         element = document.getElementById("red");
-        check = document.getElementById("chkRedes");
+        check = document.getElementById("chk_redes");
         mostrarCasillas(check);
     }
     
 function showPagWeb() {
         element = document.getElementById("pagWeb");
-        check = document.getElementById("chkPagWeb");
+        check = document.getElementById("chk_pag_web");
         mostrarCasillas(check);
     }
     
 function showCyberSeg() {
         element = document.getElementById("cyberSeg");
-        check = document.getElementById("chkCyberSeg");
+        check = document.getElementById("chk_cyber_seg");
         mostrarCasillas(check);
     }
 
 function showCel() {
         element = document.getElementById("cel");
-        check = document.getElementById("chkCel");
+        check = document.getElementById("chk_cel");
         mostrarCasillas(check);
     }
 
@@ -59,9 +93,7 @@ function showCel() {
 		 }
 		 return true;
 	}
-	/*
-    Elaborado por: Miguel Angel Carvajal Copyright © 2017  
- */ 		
+	
 	function blqlet(e) 
 	{
 		evt = e ? e : event;
@@ -72,6 +104,9 @@ function showCel() {
 		}
 		return true;
 	}
+	
+	
+ 
 /*
     Elaborado por: Miguel Angel Carvajal Copyright © 2017  
  */ 
